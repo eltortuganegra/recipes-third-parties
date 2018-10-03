@@ -38,6 +38,7 @@ class RecipePuppyRecipesProvider implements RecipesProvider
     private function parseResponse(): void
     {
         $body = $this->response->getBody();
-        $this->recipes = json_decode($body->read($body->getSize()), true);
+        $parsedResponse = json_decode($body->read($body->getSize()), true);
+        $this->recipes = $parsedResponse['results'];
     }
 }
