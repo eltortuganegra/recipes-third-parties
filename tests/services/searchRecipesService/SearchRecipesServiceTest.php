@@ -25,7 +25,7 @@ class SearchRecipesServiceTest extends TestCase
         $isInstanceOfServiceResponse = $serviceResponse instanceof ServiceResponse;
 
         // Assert
-        $this->assertTrue($isInstanceOfServiceResponse );
+        $this->assertTrue($isInstanceOfServiceResponse);
     }
 
 }
