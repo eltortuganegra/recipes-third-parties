@@ -11,9 +11,9 @@ class SearchRecipesServiceTest extends TestCase
     public function testServiceShouldResponseAServiceResponseWhenServiceIsExecuted()
     {
         // Arrange
-        $provider = '';
-        $query = '';
-        $page = '';
+        $provider = 'MyRecipes';
+        $query = 'vegetarian';
+        $page = 1;
         $myRecipesProviderFactory = new MyRecipesProviderFactory();
         $myRecipesProvider = $myRecipesProviderFactory->build();
         $service = new SearchRecipesService($myRecipesProvider);

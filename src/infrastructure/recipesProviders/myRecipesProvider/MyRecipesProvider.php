@@ -18,7 +18,7 @@ class MyRecipesProvider implements RecipesProvider
         ];
     }
 
-    public function find(): array
+    public function find(string $query, int $page): array
     {
         return $this->recipes;
     }

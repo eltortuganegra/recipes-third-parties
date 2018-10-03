@@ -13,9 +13,9 @@ class SearchRecipesServiceWithMyRecipesProviderTest extends TestCase
     public function setUp()
     {
         // Arrange
-        $provider = '';
-        $query = '';
-        $page = '';
+        $provider = 'MyRecipes';
+        $query = 'vegetarian';
+        $page = 1;
         $myRecipesProviderFactory = new MyRecipesProviderFactory();
         $myRecipesProvider = $myRecipesProviderFactory->build();
         $this->service = new SearchRecipesService($myRecipesProvider);

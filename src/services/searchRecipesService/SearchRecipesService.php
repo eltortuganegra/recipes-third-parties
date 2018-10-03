@@ -22,7 +22,9 @@ class SearchRecipesService implements Service
 
     public function execute(ServiceRequest $serviceRequest): void
     {
-        $this->recipes = $this->recipesProvider->find();
+        $query = $serviceRequest->getQuery();
+        $page = $serviceRequest->getPage();
+        $this->recipes = $this->recipesProvider->find($query, $page);
     }
 
     public function getServiceResponse(): ServiceResponse
