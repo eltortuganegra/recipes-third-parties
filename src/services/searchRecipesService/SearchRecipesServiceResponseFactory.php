@@ -8,8 +8,8 @@ use rhp\services\ServiceResponse;
 
 class SearchRecipesServiceResponseFactory
 {
-    public function build(): ServiceResponse
+    public function build(array $recipes): ServiceResponse
     {
-        return new SearchRecipesServiceResponse();
+        return new SearchRecipesServiceResponse($recipes);
     }
 }
