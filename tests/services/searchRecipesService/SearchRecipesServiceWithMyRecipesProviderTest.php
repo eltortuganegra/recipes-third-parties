@@ -13,14 +13,13 @@ class SearchRecipesServiceWithMyRecipesProviderTest extends TestCase
     public function setUp()
     {
         // Arrange
-        $provider = 'MyRecipes';
         $query = 'vegetarian';
         $page = 1;
         $myRecipesProviderFactory = new MyRecipesProviderFactory();
         $myRecipesProvider = $myRecipesProviderFactory->build();
         $this->service = new SearchRecipesService($myRecipesProvider);
         $serviceRequestFactory = new SearchRecipesServiceRequestFactory();
-        $serviceRequest = $serviceRequestFactory->build($provider, $query, $page);
+        $serviceRequest = $serviceRequestFactory->build($query, $page);
         $this->service->execute($serviceRequest);
     }
 

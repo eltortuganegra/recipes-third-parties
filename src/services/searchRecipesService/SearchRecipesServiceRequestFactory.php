@@ -7,8 +7,8 @@ use rhp\services\ServiceRequest;
 
 class SearchRecipesServiceRequestFactory
 {
-    public function build(string $provider, string $query, string $page): ServiceRequest
+    public function build(string $query, string $page): ServiceRequest
     {
-        return new SearchRecipesServiceRequest($provider, $query, $page);
+        return new SearchRecipesServiceRequest($query, $page);
     }
 }
