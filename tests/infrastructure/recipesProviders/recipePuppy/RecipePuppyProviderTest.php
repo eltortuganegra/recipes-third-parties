@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 
 class RecipePuppyProviderTest extends TestCase
 {
-    public function testProviderShouldReturnRecipesWhenWeAreLookingForRecipes()
+    public function testProviderShouldReturnFourRecipesWhenWeAreLookingForVegetarianRecipesAndOnePage()
     {
         // Arrange
         $query = 'vegetarian';
