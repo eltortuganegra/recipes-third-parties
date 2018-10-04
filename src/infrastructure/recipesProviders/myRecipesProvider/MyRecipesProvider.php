@@ -1,6 +1,8 @@
 <?php
 
-namespace rhp\infrastructure\recipesProvider;
+namespace rhp\infrastructure\recipesProvider\myRecipesProvider;
+
+use rhp\infrastructure\recipesProvider\RecipesProvider;
 
 class MyRecipesProvider implements RecipesProvider
 {

@@ -3,7 +3,7 @@
 namespace rhp\services\searchRecipesService;
 
 
-use rhp\infrastructure\recipesProvider\RecipesProvider;
+use rhp\infrastructure\recipesProvider\myRecipesProvider\MyRecipesProviderFactory;
 use rhp\services\Service;
 use rhp\services\ServiceRequest;
 use rhp\services\ServiceResponse;
@@ -13,18 +13,20 @@ class SearchRecipesService implements Service
     private $serviceResponseFactory;
     private $recipesProvider;
     private $recipes;
+    private $query;
+    private $page;
+    private $provider;
 
-    public function __construct(RecipesProvider $recipesProvider)
+    public function __construct()
     {
         $this->serviceResponseFactory = new SearchRecipesServiceResponseFactory();
-        $this->recipesProvider = $recipesProvider;
     }
 
     public function execute(ServiceRequest $serviceRequest): void
     {
-        $query = $serviceRequest->getQuery();
-        $page = $serviceRequest->getPage();
-        $this->recipes = $this->recipesProvider->find($query, $page);
+        $this->loadParameterFromRequest($serviceRequest);
+        $this->loadRecipesProvider();
+        $this->searchRecipes();
     }
 
     public function getServiceResponse(): ServiceResponse
@@ -33,4 +35,61 @@ class SearchRecipesService implements Service
             $this->recipes
         );
     }
+
+    private function loadParameterFromRequest(ServiceRequest $serviceRequest): void
+    {
+        $this->loadQueryFromRequest($serviceRequest);
+        $this->loadPageFromRequest($serviceRequest);
+        $this->loadProviderFromRequest($serviceRequest);
+    }
+
+    private function loadQueryFromRequest(ServiceRequest $serviceRequest): void
+    {
+        $this->query = $serviceRequest->getQuery();
+        assert( ! empty($this->query));
+    }
+
+    private function loadPageFromRequest(ServiceRequest $serviceRequest): void
+    {
+        $this->page = $serviceRequest->getPage();
+        assert( ! empty($this->query));
+    }
+
+    private function loadProviderFromRequest(ServiceRequest $serviceRequest): void
+    {
+        $this->provider = $serviceRequest->getProvider();
+        assert( ! empty($this->query));
+    }
+
+    private function loadRecipesProvider(): void
+    {
+        $recipeProviderFactoryClassName = $this->makeFactoryName();
+        if ($this->isRecipesProviderAvailable($recipeProviderFactoryClassName)) {
+            $recipesProviderFactory = new $recipeProviderFactoryClassName();
+            $this->recipesProvider = $recipesProviderFactory->build($this->query, $this->page);
+        }
+    }
+
+    private function makeFactoryName(): string
+    {
+        $recipeProviderFactoryClassName = 'rhp\\infrastructure\\recipesProvider\\'
+            . lcfirst($this->provider) . 'Provider\\'
+            . $this->provider . 'ProviderFactory';
+
+        return $recipeProviderFactoryClassName;
+    }
+
+    private function isRecipesProviderAvailable($recipeProviderFactoryClassName): bool
+    {
+        return class_exists($recipeProviderFactoryClassName);
+    }
+
+    private function searchRecipes(): void
+    {
+        $this->recipes = $this->recipesProvider->find(
+            $this->query,
+            $this->page
+        );
+    }
+
 }
