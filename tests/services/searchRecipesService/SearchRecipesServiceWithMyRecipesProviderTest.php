@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use rhp\infrastructure\recipesProvider\MyRecipesProviderFactory;
+use rhp\infrastructure\recipesProvider\myRecipesProvider\MyRecipesProviderFactory;
 use rhp\services\searchRecipesService\SearchRecipesService;
 use rhp\services\searchRecipesService\SearchRecipesServiceRequestFactory;
 
@@ -15,11 +15,10 @@ class SearchRecipesServiceWithMyRecipesProviderTest extends TestCase
         // Arrange
         $query = 'vegetarian';
         $page = 1;
-        $myRecipesProviderFactory = new MyRecipesProviderFactory();
-        $myRecipesProvider = $myRecipesProviderFactory->build();
-        $this->service = new SearchRecipesService($myRecipesProvider);
+        $provider = 'MyRecipes';
+        $this->service = new SearchRecipesService();
         $serviceRequestFactory = new SearchRecipesServiceRequestFactory();
-        $serviceRequest = $serviceRequestFactory->build($query, $page);
+        $serviceRequest = $serviceRequestFactory->build($query, $page, $provider);
         $this->service->execute($serviceRequest);
     }
 
