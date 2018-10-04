@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use rhp\infrastructure\recipesProvider\recipePuppyRecipesProvider\RecipePuppyRecipesProviderFactory;
 
 class RecipePuppyProviderTest extends TestCase
 {

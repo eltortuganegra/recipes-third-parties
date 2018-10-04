@@ -2,7 +2,8 @@
 
 
 use PHPUnit\Framework\TestCase;
-use rhp\infrastructure\recipesProvider\MyRecipesProviderFactory;
+use rhp\infrastructure\recipesProvider\myRecipesProvider\MyRecipesProviderFactory;
+
 
 class MyRecipesProviderTest extends TestCase
 {
