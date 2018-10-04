@@ -1,7 +1,6 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use rhp\infrastructure\recipesProvider\myRecipesProvider\MyRecipesProviderFactory;
 use rhp\services\searchRecipesService\SearchRecipesService;
 use rhp\services\searchRecipesService\SearchRecipesServiceRequestFactory;
 
