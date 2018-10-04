@@ -64,10 +64,12 @@ class SearchRecipesService implements Service
     private function loadRecipesProvider(): void
     {
         $recipeProviderFactoryClassName = $this->makeFactoryName();
-        if ($this->isRecipesProviderAvailable($recipeProviderFactoryClassName)) {
-            $recipesProviderFactory = new $recipeProviderFactoryClassName();
-            $this->recipesProvider = $recipesProviderFactory->build($this->query, $this->page);
+        if ( ! $this->isRecipesProviderAvailable($recipeProviderFactoryClassName)) {
+            throw new ProviderNotFoundException();
         }
+
+        $recipesProviderFactory = new $recipeProviderFactoryClassName();
+        $this->recipesProvider = $recipesProviderFactory->build($this->query, $this->page);
     }
 
     private function makeFactoryName(): string
