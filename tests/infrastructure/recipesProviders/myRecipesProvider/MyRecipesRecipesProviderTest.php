@@ -2,17 +2,17 @@
 
 
 use PHPUnit\Framework\TestCase;
-use rhp\infrastructure\recipesProvider\myRecipesProvider\MyRecipesProviderFactory;
+use rhp\infrastructure\recipesProviders\myRecipesRecipesProvider\MyRecipesRecipesProviderFactory;
 
 
-class MyRecipesProviderTest extends TestCase
+class MyRecipesRecipesProviderTest extends TestCase
 {
     public function testMyRecipesProviderTestShouldFindOneElement()
     {
         // Arrange
         $query = 'vegetarian';
         $page = 1;
-        $myRecipesProviderFactory = new MyRecipesProviderFactory();
+        $myRecipesProviderFactory = new MyRecipesRecipesProviderFactory();
         $myRecipesProvider = $myRecipesProviderFactory ->build();
         $recipes = $myRecipesProvider->find($query, $page);
 

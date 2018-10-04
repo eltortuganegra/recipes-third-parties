@@ -1,6 +1,7 @@
 <?php
 
-namespace rhp\infrastructure\recipesProvider\recipePuppyRecipesProvider;
+namespace rhp\infrastructure\recipesProviders\recipePuppyRecipesProvider;
+
 
 use rhp\infrastructure\recipesProvider\RecipesProvider;
 

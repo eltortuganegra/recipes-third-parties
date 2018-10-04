@@ -3,7 +3,6 @@
 namespace rhp\services\searchRecipesService;
 
 
-use rhp\infrastructure\recipesProvider\myRecipesProvider\MyRecipesProviderFactory;
 use rhp\services\Service;
 use rhp\services\ServiceRequest;
 use rhp\services\ServiceResponse;
@@ -74,9 +73,9 @@ class SearchRecipesService implements Service
 
     private function makeFactoryName(): string
     {
-        $recipeProviderFactoryClassName = 'rhp\\infrastructure\\recipesProvider\\'
-            . lcfirst($this->provider) . 'Provider\\'
-            . $this->provider . 'ProviderFactory';
+        $recipeProviderFactoryClassName = 'rhp\\infrastructure\\recipesProviders\\'
+            . lcfirst($this->provider) . 'RecipesProvider\\'
+            . $this->provider . 'RecipesProviderFactory';
 
         return $recipeProviderFactoryClassName;
     }

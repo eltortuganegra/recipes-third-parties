@@ -1,10 +1,10 @@
 <?php
 
-namespace rhp\infrastructure\recipesProvider\myRecipesProvider;
+namespace rhp\infrastructure\recipesProviders\myRecipesRecipesProvider;
 
 use rhp\infrastructure\recipesProvider\RecipesProvider;
 
-class MyRecipesProvider implements RecipesProvider
+class MyRecipesRecipesProvider implements RecipesProvider
 {
     private $recipes;
 
